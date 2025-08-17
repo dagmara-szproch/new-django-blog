@@ -5,5 +5,6 @@ from .models import Post
 # Create your views here.
 
 class PostList(generic.ListView):
-    queryset = Post.objects.all()
+    # model = Post  #a collectionof all posts = Post.objects.all()
+    queryset = Post.objects.filter(status=1)  # Only show published posts
     template_name = 'post_list.html'
