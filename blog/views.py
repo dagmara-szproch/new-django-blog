@@ -10,6 +10,10 @@ class PostList(generic.ListView):
     template_name = 'blog/index.html'
     paginate_by = 6
 
+# Display an individual post
+# This function is used to display a single post based on its slug.
+# The slug is a unique identifier for the post, typically derived from the post's title.
+# It allows for cleaner URLs and better SEO.
 def post_detail(request, slug):
     """
     Display an individual :model:`blog.Post`.
@@ -32,3 +36,17 @@ def post_detail(request, slug):
         "blog/post_detail.html",
         {"post": post},
     )
+
+# another way using when you have a lot of items in context
+# def post_detail(request, slug):
+
+#     queryset = Post.objects.filter(status=1)
+#     post = get_object_or_404(queryset, slug=slug)
+
+#     context = {"post": post}
+
+#     return render(
+#         request,
+#         "blog/post_detail.html",
+#         context
+#     )
